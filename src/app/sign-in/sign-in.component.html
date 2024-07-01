@@ -1,0 +1,113 @@
+xsxsax
+<input [(ngModel)]="name" />
+<p>Hello, {{ name }}!</p>
+<input [disabled]="condition ? true : false" />
+<h1>{{ text }}</h1>
+
+<button (click)="onClick()">Click me</button>
+
+<br />
+<!--  -->
+<h1>ngif with Else Condition / ngStyle /ngClass /ngFor /ngSwitch</h1>
+<div *ngIf="isAvailable; else elseBlock">Available</div>
+<ng-template #elseBlock>Not Available</ng-template>
+
+<div [ngStyle]="{ 'background-color': bgColor }">Styled div</div>
+<div [ngClass]="{ active: isActive }">Class binding</div>
+
+<ul>
+  <li *ngFor="let item of items">{{ item }}</li>
+</ul>
+
+<div [ngSwitch]="currentView">
+  <div *ngSwitchCase="'view1'">View 1</div>
+  <div *ngSwitchCase="'view2'">View 2</div>
+  <div *ngSwitchDefault>Default View</div>
+</div>
+<!--  -->
+<br />
+<h1>Child</h1>
+<h2>ViewChild</h2>
+<app-child></app-child>
+<button (click)="showString()">View Child</button>
+
+<h2>Content Child</h2>
+<ng-content></ng-content>
+
+<!--  -->
+<br />
+<p>The hero's birthday is {{ birthday | date }}</p>
+<br />
+<ul>
+  <li *ngFor="let post of posts">{{ post.title }}</li>
+</ul>
+<nz-card
+  class="w-2/5 text-center"
+  nzTitle="เข้าสู่ระบบ"
+>
+  <div class="flex justify-center">
+    <form
+      nz-form
+      [formGroup]="form"
+      (ngSubmit)="submitForm()"
+    >
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="getErrorEmailMsg()">
+          <nz-input-group nzPrefixIcon="mail">
+            <input
+              class="text-left"
+              type="text"
+              nz-input
+              formControlName="email"
+              placeholder="Email"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <nz-input-group
+            nzPrefixIcon="lock"
+            [nzSuffix]="suffixTemplate"
+          >
+            <input
+              nz-input
+              formControlName="password"
+              placeholder="Password"
+              [type]="passwordVisible ? 'text' : 'password'"
+            />
+          </nz-input-group>
+          <ng-template #suffixTemplate>
+            <span
+              nz-icon
+              [nzType]="!passwordVisible ? 'eye-invisible' : 'eye'"
+              (click)="passwordVisible = !passwordVisible"
+            ></span>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <button
+        nz-button
+        class="w-full"
+        [nzType]="'primary'"
+      >
+        เข้าสู่ระบบ
+      </button>
+      <div class="mt-2">
+        Or
+        <a>register now!</a>
+        <p class="text-[#6F7580]">
+          ยังไม่เคยมีบัญชี?
+          <a
+            [routerLink]="'/signup'"
+            class="text-primary text-decoration-underline"
+          >
+            ลงทะเบียนที่นี่</a
+          >
+        </p>
+      </div>
+    </form>
+  </div>
+</nz-card>

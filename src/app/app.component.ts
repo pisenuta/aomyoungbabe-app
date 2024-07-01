@@ -1,5 +1,7 @@
 import { Component } from '@angular/core'
 import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms'
+import { RouterModule } from '@angular/router'
+import { HomeComponent } from './home/home.component'
 
 @Component({
   selector: 'app-root',
@@ -7,16 +9,28 @@ import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@ang
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'old-todo'
+  title = 'login'
   validateForm: FormGroup<{
     email: FormControl<string>
     password: FormControl<string>
-    remember: FormControl<boolean>
   }> = this.fb.group({
-    email: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
-    remember: [true],
   })
+
+  getErrorEmailMsg(): string | undefined {
+    const emailControl = this.validateForm.get('email')
+
+    if (emailControl!.hasError('required')) {
+      return 'Please fill out this field.'
+    }
+
+    if (emailControl!.hasError('email')) {
+      return 'This is not a valid email format.'
+    }
+
+    return undefined
+  }
 
   submitForm(): void {
     if (this.validateForm.valid) {
@@ -33,6 +47,5 @@ export class AppComponent {
 
   constructor(private fb: NonNullableFormBuilder) {}
 
-  index1 = 0
-  index2 = 1
+  passwordVisible = false
 }

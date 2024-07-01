@@ -8,3 +8,7 @@
 * {
   font-family: 'Prompt', sans-serif !important;
 }
+
+.ant-form-item-explain-error {
+  text-align: left !important;
+}

@@ -3,8 +3,9 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { ReactiveFormsModule } from '@angular/forms' // Import this
+import { FormsModule, ReactiveFormsModule } from '@angular/forms' // Import this
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations' // Required for ng-zorro-antd
+import { RouterModule } from '@angular/router'
 
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzIconModule } from 'ng-zorro-antd/icon'
@@ -20,21 +21,31 @@ import {
   CaretLeftOutline,
   SettingOutline,
   LockOutline,
-  UserOutline,
+  MailOutline,
+  EyeOutline,
+  EyeInvisibleOutline,
 } from '@ant-design/icons-angular/icons'
 import { IconDefinition } from '@ant-design/icons-angular'
+import { SignInComponent } from './sign-in/sign-in.component'
+import { HomeComponent } from './home/home.component';
+import { ChildComponent } from './sign-in/child/child.component';
+import { SignUpComponent } from './sign-up/sign-up.component'
 
 const icons: IconDefinition[] = [
   StepBackwardOutline,
   CaretLeftOutline,
   SettingOutline,
   LockOutline,
-  UserOutline,
+  MailOutline,
+  EyeOutline,
+  EyeInvisibleOutline,
 ]
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SignInComponent, HomeComponent, ChildComponent, SignUpComponent],
   imports: [
+    FormsModule,
+    RouterModule,
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
